@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+
+        }
+
+        .section {
+            width: 80px;
+            height: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 2px;
+
+
+        }
+
+        .section .clor {
+            width: 20px;
+            height: 90%;
+            border: 1px solid #555;
+            cursor: pointer;
+            margin: 10px 0
+        }
+
+        .light {
+            background-color: #ffffff;
+            width: 100%;
+            height: 100vh;
+            color: rgb(0, 1, 2);
+            padding: 20px;
+
+        }
+
+        .dark {
+            background-color: #555;
+            width: 100%;
+            height: 100vh;
+            color: rgb(223, 226, 230);
+            padding: 20px;
+
+        }
+
+        .dark .clor {
+            border: 1px solid rgb(146, 139, 139);
+        }
+
+        .green {
+            background-color: rgb(175, 246, 175);
+            width: 100%;
+            height: 100vh;
+            color: rgb(0, 1, 2);
+            padding: 20px;
+
+        }
+
+        .yellow {
+            background-color: rgb(246, 246, 162);
+            width: 100%;
+            height: 100vh;
+            color: rgb(0, 1, 2);
+            padding: 20px;
+
+        }
+
+        #contaner {
+            padding: 100px;
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="contaner" class="light   ">
+        <h1>DOM</h1>
+        <div class="section">
+            <div data-color='light' class="clor" style="background-color:rgb(255, 255, 255) ;"></div>
+            <div data-color='dark' class="clor" style="background-color: #555 ;"></div>
+            <div data-color='green' class="clor" style="background-color:rgb(138, 253, 138) ;"></div>
+            <div data-color='yellow' class="clor" style="background-color:rgb(246, 246, 132); ;"></div>
+
+        </div>
+        <P style="margin-top: 20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quidem atque
+            corrupti sunt, qui eius enim expedita consequuntur neque, praesentium id provident dolor aliquid laboriosam
+            nobis doloremque voluptatibus minus laudantium.
+            Quasi nisi rem voluptatum, quaerat atque ipsum voluptatem iure consequuntur autem distinctio, nostrum eum
+            consequatur. Quas quam eligendi, hic eum veniam aspernatur? Nemo nulla explicabo dolor commodi iste harum
+            porro.
+            Facilis accusamus deserunt exercitationem amet vero officiis tempore, aspernatur hic incidunt, ab, tenetur
+            quisquam commodi saepe blanditiis nulla molestiae autem ipsa dolores a sit! Veniam doloribus ipsa eaque
+            dolorum nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab eius nihil reprehenderit quaerat
+            commodi laborum quae rerum velit modi, sequi, voluptate harum assumenda pariatur. Dignissimos sequi ab
+            veniam reprehenderit placeat.</P>
+        <h3 style="margin-top: 20px;">theme : <span id="span"></span></h3>
+    </div>
+
+
+
+
+
+
+    <script>
+        let span = document.querySelector('#span')
+        let colors = document.querySelector('.section')
+        let contaner = document.querySelector('#contaner')
+        let defult = localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+        span.innerHTML = defult
+        contaner.classList = defult
+
+        colors = Array.from(colors.children)
+        colors.forEach(element => {
+            element.addEventListener('click', (e) => {
+                let color = e.target.dataset.color
+                contaner.classList = color
+                span.innerHTML = color
+                localStorage.setItem('theme', color)
+            })
+        });
+
+    </script>
+</body>
+
+</html>
